@@ -57,6 +57,9 @@ contract Steaking {
     // transfer steak token to this contract.
     steak_token.safeTransferFrom(msg.sender, address(this), amount_);
 
+    // update senders steaked balance.
+    steak_balances[msg.sender] = steak_balances[msg.sender].add(amount_);
+
     // Steaking tracks how much is steaked.
     if (steak_balances[msg.sender] >= buyInFee) { // if user has steaked enough transfer the nft.
       
